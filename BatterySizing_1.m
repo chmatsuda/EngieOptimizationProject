@@ -6,7 +6,7 @@ t = [1:8760]';
 ElecDemand = table2array(ElecDemand);%kW
 RenewableEnergy = table2array(RenewableEnergy);
 %% Can we use a battery for a 2MW + 4.5 MW max PV distribution center if the peak is 3.9MW
-PVInstalled = 4000; %How many kW of PV are installed, adjust this accordingly
+PVInstalled = 4500; %How many kW of PV are installed, adjust this accordingly
 WindInstalled = 0; %3.6MW of Wind installed = 3600kW 
 
 GridProduction = ones(8760,1)*2000; %kW
@@ -35,7 +35,7 @@ Grid_energy_prod = sum(GridProduction) *3600/1000/1000 %GJ
 total_energy_prod = PV_energy_prod + Grid_energy_prod;
 
 %The energy consumed is 80,209 GJ and energy produced with PV + 2MW grid is
-%80,804 GJ so hypothetically could work...
+%83,020 GJ so hypothetically could work...
 
 %% What percentage of time is it self sufficient?
 %If we don't have a battery
@@ -50,7 +50,7 @@ for i = 1:8760
     
 end
 percentage = sstime/8760
-% 49.75 of the time, it is self sufficient
+% 51.31 of the time, it is self sufficient
 
 %% Max Power of Battery in Discharge Mode in MW
 %Above, we found the difference in demand and production in the variable
@@ -59,7 +59,7 @@ percentage = sstime/8760
 
 %Finding the maximum difference between production and demand,
 MaxPower= max(PowerStillNeeded)/1000 %MW
-%Gives 1.582 MW as the max
+%Gives 1.573 MW as the max
 
 %% Max Size of Battery in MWh
 for k = 1:15000
